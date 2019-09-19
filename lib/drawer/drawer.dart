@@ -24,22 +24,21 @@ class MainDrawer extends StatelessWidget {
                   fontSize: Theme.of(context).textTheme.display1.fontSize),
             )),
           ),
-          ListView(
+          ListView.builder(
+            itemCount: drawerList.length,
             shrinkWrap: true,
             padding: EdgeInsets.only(left: 8.0),
-            children: <Widget>[
-              RouteDrawerItem(context,
-                  title: 'Borda semi-transparente',
-                  description: 'ListView com borda semi transparente',
-                  route: '/semiTransparent'),
-              SizedBox(height: 8.0),
-              RouteDrawerItem(
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: RouteDrawerItem(
                 context,
-                title: 'Overlay',
-                description: 'Testes com widgets sob outros',
-                route: '/overlayTest',
-              )
-            ],
+                route: drawerList[index].route,
+                title: drawerList[index].title,
+                description: drawerList[index].description,
+                status: drawerList[index].status,
+                odd: drawerList[index].odd,
+              ),
+            ),
           )
         ],
       ),

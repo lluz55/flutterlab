@@ -82,3 +82,27 @@ class _RouteDrawerItemState extends State<RouteDrawerItem> {
     return color;
   }
 }
+
+List<RouteDrawerItemModel> drawerList = [
+  RouteDrawerItemModel('Borda semi-transparente', '/semiTransparent',
+      description: 'ListView com borda semi transparente'),
+  RouteDrawerItemModel('Overlay', '/overlayTest',
+      description: 'Testes com widgets sob outros', odd: true),
+  RouteDrawerItemModel('Animated Widget', '/animatedWidgets',
+      description: 'Troca de widgets animada'),
+  RouteDrawerItemModel('Streams', '/streamsPage',
+      description: 'Testes com streamings', odd: true)
+];
+
+class RouteDrawerItemModel {
+  final String title;
+  final String description;
+  final String route;
+  final bool odd;
+  final FeatureStatus status;
+
+  RouteDrawerItemModel(this.title, this.route,
+      {this.description = '',
+      this.odd = false,
+      this.status = FeatureStatus.planned});
+}
