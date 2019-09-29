@@ -60,14 +60,16 @@ class _WidgetUpdatesBodyState extends State<WidgetUpdatesBody> {
           Text('Statefull update: $_count'),
           Consumer<ProviderUptades>(builder: (_, prov, __) {
             return Column(
-              children: <Widget>[Text('Cosumer update ${prov.counter}')],
+              children: <Widget>[
+                Text('Cosumer update ${prov.counter}'),
+              ],
             );
           }),
           Selector<ProviderUptades, int>(
             selector: (context, select) {
               return select.counter > 10 ? select.counter : 0;
             },
-            builder: (_, prov, __) => Text('Selector update ${prov}'),
+            builder: (_, counter, __) => Text('Selector update $counter'),
           ),
           WidgetUpdateChild(),
           RaisedButton(
@@ -93,6 +95,9 @@ class _WidgetUpdatesBodyState extends State<WidgetUpdatesBody> {
             color: Colors.red[600],
             textColor: Colors.white,
             onPressed: () {
+              setState(() {
+                _count = 0;
+              });
               Provider.of<ProviderUptades>(context, listen: false).reset();
             },
           )

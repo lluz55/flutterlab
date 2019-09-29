@@ -17,6 +17,7 @@ class MainDrawer extends StatelessWidget {
           children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(color: Colors.blue),
+              padding: EdgeInsets.all(0),
               child: Center(
                   child: Text(
                 'FlutterLab',
@@ -26,9 +27,9 @@ class MainDrawer extends StatelessWidget {
               )),
             ),
             ListView.builder(
+              padding: EdgeInsets.all(0),
               itemCount: drawerList.length,
               shrinkWrap: true,
-              padding: EdgeInsets.only(left: 8.0),
               itemBuilder: (context, index) => RouteDrawerItem(
                 context,
                 route: drawerList[index].route,
