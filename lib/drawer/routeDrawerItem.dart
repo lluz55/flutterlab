@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/pages/animatedWidgets/animatedWidgets.dart';
+import 'package:flutter_lab/pages/customRouter/customRouter.dart';
+import 'package:flutter_lab/pages/overlayTest/overlayTest.dart';
+import 'package:flutter_lab/pages/semiTransparent/semiTransparentPage.dart';
+import 'package:flutter_lab/pages/streams/streamsPage.dart';
+import 'package:flutter_lab/pages/transfomations/transformationsPage.dart';
+import 'package:flutter_lab/pages/widget_updates/widgetUpdates.dart';
+import 'package:flutter_lab/router.dart';
 
 enum FeatureStatus { done, inProgress, planned }
 
 class RouteDrawerItem extends StatefulWidget {
   final BuildContext context;
   final String title;
-  final String route;
+  final Widget route;
   final String description;
   final FeatureStatus status;
   final bool odd;
@@ -24,30 +32,28 @@ class RouteDrawerItem extends StatefulWidget {
 }
 
 class _RouteDrawerItemState extends State<RouteDrawerItem> {
-  String _currentRoute;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (ModalRoute.of(context).settings.name != widget.route) {
-          setState(() => _currentRoute = ModalRoute.of(context).settings.name);
-          Navigator.of(context).popAndPushNamed(widget.route);
-        }
+        // if (ModalRoute.of(context).settings.name != widget.route.) {
+        //   Navigator.of(context).popAndPushNamed(widget.route);
+        // }
+        coldNavigator(context, widget.route);
       },
       child: Container(
         decoration: BoxDecoration(
-          border: Border(
-              left: BorderSide(
-                color: _statusColor(widget.status),
-                width: 3,
-              ),
-              right: BorderSide(
-                color: ModalRoute.of(context).settings.name == widget.route
-                    ? Colors.blueAccent
-                    : Colors.transparent,
-                width: 3,
-              )),
+          // border: Border(
+          //     // left: BorderSide(
+          //     //   color: _statusColor(widget.status),
+          //     //   width: 3,
+          //     // ),
+          //     right: BorderSide(
+          //   color: ModalRoute.of(context).settings.name == widget.route
+          //       ? Colors.blueAccent
+          //       : Colors.transparent,
+          //   width: 3,
+          // )),
           color: widget.odd ? Colors.grey[300] : Colors.grey[200],
         ),
         child: ListTile(
@@ -63,41 +69,62 @@ class _RouteDrawerItemState extends State<RouteDrawerItem> {
     );
   }
 
-  Color _statusColor(FeatureStatus status) {
-    Color color;
-    switch (status) {
-      case FeatureStatus.done:
-        color = Colors.green;
-        break;
-      case FeatureStatus.inProgress:
-        color = Colors.orangeAccent;
-        break;
-      case FeatureStatus.planned:
-        color = Colors.grey[500];
-        break;
-      default:
-        color = Colors.grey[800];
-    }
+  // Color _statusColor(FeatureStatus status) {
+  //   Color color;
+  //   switch (status) {
+  //     case FeatureStatus.done:
+  //       color = Colors.green;
+  //       break;
+  //     case FeatureStatus.inProgress:
+  //       color = Colors.orangeAccent;
+  //       break;
+  //     case FeatureStatus.planned:
+  //       color = Colors.grey[500];
+  //       break;
+  //     default:
+  //       color = Colors.grey[800];
+  //   }
 
-    return color;
-  }
+  //   return color;
+  // }
 }
 
+// List<RouteDrawerItemModel> drawerList = [
+//   RouteDrawerItemModel('Borda semi-transparente', '/semiTransparent',
+//       description: 'ListView com borda semi transparente'),
+//   RouteDrawerItemModel('Overlay', '/overlayTest',
+//       description: 'Testes com widgets sob outros', odd: true),
+//   RouteDrawerItemModel('Animated Widget', '/animatedWidgets',
+//       description: 'Troca de widgets animada'),
+//   RouteDrawerItemModel('Streams', '/streamsPage',
+//       description: 'Testes com streamings', odd: true),
+//   RouteDrawerItemModel('Transformations', '/transformations',
+//       description: 'Testes com transforms'),
+//   RouteDrawerItemModel('Custom Router', '/customRouter',
+//       description: 'Router View personalizado', odd: true)
+// ];
+
 List<RouteDrawerItemModel> drawerList = [
-  RouteDrawerItemModel('Borda semi-transparente', '/semiTransparent',
+  RouteDrawerItemModel('Borda semi-transparente', SemiTransparentPage(),
       description: 'ListView com borda semi transparente'),
-  RouteDrawerItemModel('Overlay', '/overlayTest',
+  RouteDrawerItemModel('Overlay', OverlayTest(),
       description: 'Testes com widgets sob outros', odd: true),
-  RouteDrawerItemModel('Animated Widget', '/animatedWidgets',
+  RouteDrawerItemModel('Animated Widget', AnimatedWidgetPage(),
       description: 'Troca de widgets animada'),
-  RouteDrawerItemModel('Streams', '/streamsPage',
-      description: 'Testes com streamings', odd: true)
+  RouteDrawerItemModel('Streams', StreamsPage(),
+      description: 'Testes com streamings', odd: true),
+  RouteDrawerItemModel('Transformations', TransformationsPage(),
+      description: 'Testes com transforms'),
+  RouteDrawerItemModel('Custom Router', CustomRouter(),
+      description: 'Router View personalizado', odd: true),
+  RouteDrawerItemModel('Widget Updates', WidgetUpdatesPage(),
+      description: 'Testes com atualização de widgets')
 ];
 
 class RouteDrawerItemModel {
   final String title;
   final String description;
-  final String route;
+  final Widget route;
   final bool odd;
   final FeatureStatus status;
 

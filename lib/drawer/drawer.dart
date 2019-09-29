@@ -12,25 +12,24 @@ class MainDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       elevation: elevation,
-      child: Column(
-        children: <Widget>[
-          DrawerHeader(
-            decoration: BoxDecoration(color: Colors.blue),
-            child: Center(
-                child: Text(
-              'FlutterLab',
-              style: TextStyle(
-                  color: Colors.white60,
-                  fontSize: Theme.of(context).textTheme.display1.fontSize),
-            )),
-          ),
-          ListView.builder(
-            itemCount: drawerList.length,
-            shrinkWrap: true,
-            padding: EdgeInsets.only(left: 8.0),
-            itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: RouteDrawerItem(
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Center(
+                  child: Text(
+                'FlutterLab',
+                style: TextStyle(
+                    color: Colors.white60,
+                    fontSize: Theme.of(context).textTheme.display1.fontSize),
+              )),
+            ),
+            ListView.builder(
+              itemCount: drawerList.length,
+              shrinkWrap: true,
+              padding: EdgeInsets.only(left: 8.0),
+              itemBuilder: (context, index) => RouteDrawerItem(
                 context,
                 route: drawerList[index].route,
                 title: drawerList[index].title,
@@ -38,9 +37,9 @@ class MainDrawer extends StatelessWidget {
                 status: drawerList[index].status,
                 odd: drawerList[index].odd,
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
