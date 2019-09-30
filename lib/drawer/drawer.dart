@@ -32,7 +32,7 @@ class MainDrawer extends StatelessWidget {
               shrinkWrap: true,
               itemBuilder: (context, index) => RouteDrawerItem(
                 context,
-                route: drawerList[index].route,
+                routeName: drawerList[index].routeName,
                 title: drawerList[index].title,
                 description: drawerList[index].description,
                 status: drawerList[index].status,

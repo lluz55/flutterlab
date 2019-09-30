@@ -37,9 +37,3 @@ class RouterBuilder extends ChangeNotifier {
         )
   };
 }
-
-coldNavigator(BuildContext context, Widget route) {
-  Navigator.of(context).push(PageRouteBuilder(
-      transitionDuration: Duration(milliseconds: 1),
-      pageBuilder: (context, animation, secAnimation) => MainLayout(route)));
-}
