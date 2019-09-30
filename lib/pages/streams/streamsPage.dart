@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/pages/streams/custom_route_provider.dart';
 import 'package:flutter_lab/pages/streams/random_widget.dart';
 
 Map<String, Widget> routes = {
@@ -28,7 +29,7 @@ class _StreamsPageState extends State<StreamsPage>
     _animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 3));
 
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(Duration(milliseconds: 500), () {
       CustomRouteProvider.pushRoute('/');
     });
     super.initState();
@@ -37,7 +38,7 @@ class _StreamsPageState extends State<StreamsPage>
   @override
   void dispose() {
     _animationController.dispose();
-    CustomRouteProvider.controller.close();
+    // CustomRouteProvider.controller.close();
     print('disposing...');
     super.dispose();
   }
@@ -46,7 +47,7 @@ class _StreamsPageState extends State<StreamsPage>
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        StreamBuilder(
+        StreamBuilder(          
             stream: CustomRouteProvider.stream,
             builder: (context, AsyncSnapshot<CustomRouteModel> snapshot) {
               if (snapshot.hasData) {
@@ -76,33 +77,4 @@ class _StreamsPageState extends State<StreamsPage>
       ],
     );
   }
-}
-
-class CustomRouteProvider {
-  static StreamController<CustomRouteModel> _controller =
-      StreamController<CustomRouteModel>.broadcast();
-
-  static StreamController<CustomRouteModel> get controller => _controller;
-
-  static Stream<CustomRouteModel> get stream =>
-      controller.stream.asBroadcastStream();
-
-  static List<CustomRouteModel> history = [];
-
-  static String lastRoute = '';
-
-  static pushRoute(String routeName, {Map<String, dynamic> args}) {
-    var route = CustomRouteModel(routeName: routeName, args: args);
-    if (route.routeName == lastRoute) return;
-    history.add(route);
-    controller.add(route);
-    lastRoute = routeName;
-  }
-}
-
-class CustomRouteModel {
-  final String routeName;
-  final Map<String, dynamic> args;
-
-  CustomRouteModel({@required this.routeName, this.args});
 }

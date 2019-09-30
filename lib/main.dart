@@ -13,14 +13,20 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Lab',
       theme: ThemeData(
-          primarySwatch: Colors.blue,
-          pageTransitionsTheme: PageTransitionsTheme(
-            builders: Map<TargetPlatform,
-                    _InanimatePageTransitionsBuilder>.fromIterable(
-                TargetPlatform.values.toList(),
-                key: (dynamic k) => k,
-                value: (dynamic _) => const _InanimatePageTransitionsBuilder()),
-          )),
+        primarySwatch: Colors.blue,
+        pageTransitionsTheme: PageTransitionsTheme(builders: {
+          TargetPlatform.fuchsia: _InanimatePageTransitionsBuilder(),
+          TargetPlatform.iOS: _InanimatePageTransitionsBuilder(),
+          TargetPlatform.android: _InanimatePageTransitionsBuilder(),
+        }
+
+            // Map<TargetPlatform,
+            //         _InanimatePageTransitionsBuilder>.fromIterable(
+            //     TargetPlatform.values.toList(),
+            //     key: (dynamic k) => k,
+            //     value: (dynamic _) => const _InanimatePageTransitionsBuilder()),
+            ),
+      ),
       initialRoute: '/',
       routes: RouterBuilder.routes,
     );
@@ -28,8 +34,6 @@ class MyApp extends StatelessWidget {
 }
 
 class _InanimatePageTransitionsBuilder extends PageTransitionsBuilder {
-  const _InanimatePageTransitionsBuilder();
-
   @override
   Widget buildTransitions<T>(
       PageRoute<T> route,
