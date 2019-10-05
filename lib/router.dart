@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lab/layouts/mainLayout.dart';
 import 'package:flutter_lab/pages/animatedWidgets/animatedWidgets.dart';
 import 'package:flutter_lab/pages/customRouter/customRouter.dart';
+import 'package:flutter_lab/pages/custom_navigator/custom_navigator.dart';
 import 'package:flutter_lab/pages/home/homePage.dart';
 import 'package:flutter_lab/pages/overlayTest/overlayTest.dart';
 import 'package:flutter_lab/pages/semiTransparent/semiTransparentPage.dart';
@@ -34,6 +35,9 @@ class RouterBuilder extends ChangeNotifier {
         ),
     '/widgetUpdates': (_) => MainLayout(
           WidgetUpdatesPage(),
+        ),
+    '/customNavigator': (_) => MainLayout(
+          CustomNavigatorPage(),
         )
   };
 }

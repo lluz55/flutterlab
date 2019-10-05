@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/pages/transfomations/transform_size.dart';
 
 class TransformationsPage extends StatefulWidget {
   @override
@@ -32,6 +33,17 @@ class _TransformationsPageState extends State<TransformationsPage>
 
   @override
   Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        // transformPosition(),
+        TransformSize(),
+      ],
+    );
+  }
+
+  Widget transformPosition() {
     return Column(
       children: <Widget>[
         GestureDetector(

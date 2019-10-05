@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/drawer/drawer.dart';
 import 'package:flutter_lab/services/fcService.dart';
+import 'package:flutter_lab/theme/theme_bloc.dart';
+import 'package:provider/provider.dart';
 
 class MainLayout extends StatefulWidget {
   final Widget child;
@@ -43,11 +45,19 @@ class _MainLayoutState extends State<MainLayout> {
 
   @override
   Widget build(BuildContext context) {
+    final themeColor = Provider.of<ThemeBloc>(context).themeColor;
     return LayoutBuilder(
       builder: (context, constrains) {
         return Scaffold(
+          backgroundColor: themeColor.backgroundColor,
           appBar: AppBar(
-            title: Text('Main Layout'),
+            backgroundColor: themeColor.primaryColor,
+            title: Text(
+              'Main Layout',
+              style: TextStyle(
+                color: themeColor.secondaryHeaderColor,
+              ),
+            ),
           ),
           body: SafeArea(
             child: Row(
@@ -73,7 +83,12 @@ class _MainLayoutState extends State<MainLayout> {
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               _showOverlay = true;
-              FcService.sendMsg(Random().nextInt(100).toString());
+              final themeBloc = Provider.of<ThemeBloc>(context, listen: false);
+              themeBloc.changeTheme(ThemeModel(
+                backgroundColor: Colors.grey[800],
+                primaryColor: Colors.grey[900],
+                primarySwatch: Colors.blue,
+              ));
             },
             tooltip: 'Increment',
             child: Icon(Icons.add),

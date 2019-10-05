@@ -118,7 +118,11 @@ List<RouteDrawerItemModel> drawerList = [
       odd: true),
   RouteDrawerItemModel('Widget Updates',
       routeName: '/widgetUpdates',
-      description: 'Testes com atualização de widgets')
+      description: 'Testes com atualização de widgets'),
+  RouteDrawerItemModel('Custom Navigator',
+      routeName: '/customNavigator',
+      description: 'Navegador customizado',
+      odd: true),
 ];
 
 class RouteDrawerItemModel {
