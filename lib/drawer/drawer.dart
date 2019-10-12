@@ -27,6 +27,7 @@ class MainDrawer extends StatelessWidget {
               )),
             ),
             ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
               padding: EdgeInsets.all(0),
               itemCount: drawerList.length,
               shrinkWrap: true,
