@@ -15,9 +15,6 @@ class _TransformSizeState extends State<TransformSize>
   Animation<double> _animation;
   GlobalKey _globalKey = GlobalKey();
 
-  double _containerHeight = double.infinity;
-  double _containerWidth = 150.0;
-
   double _topPos = 0.0;
   double _leftPos = 0.0;
 
@@ -25,7 +22,7 @@ class _TransformSizeState extends State<TransformSize>
   void initState() {
     _controller =
         AnimationController(duration: Duration(milliseconds: 500), vsync: this);
-    _animation = Tween<double>(begin: 35, end: 260.0).animate(
+    _animation = Tween<double>(begin: 38, end: 260.0).animate(
         CurvedAnimation(curve: Curves.fastOutSlowIn, parent: _controller));
     super.initState();
     _controller.addListener(() {
@@ -59,36 +56,32 @@ class _TransformSizeState extends State<TransformSize>
       width: width,
       child: Stack(
         children: <Widget>[
-          AnimatedBuilder(
-              animation: _animation,
-              builder: (context, animatation) {
-                return Container(
-                  width: 260,
-                  height: height,
-                  color: Colors.blue[700],
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.home,
-                          color: Colors.white,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 6.0),
-                          child: Text(
-                            'Não preciso ser animado'.toUpperCase(),
-                            style: whiteTextStyle,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
+          Container(
+            width: 260,
+            height: height,
+            color: Colors.blue[700],
+            alignment: Alignment.topCenter,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 6.0),
+                    child: Text(
+                      'Não preciso ser animado'.toUpperCase(),
+                      style: whiteTextStyle,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                );
-              }),
+                ],
+              ),
+            ),
+          ),
           Transform(
             transform: Matrix4.translationValues(_animation.value, 0, 0),
             child: GestureDetector(
