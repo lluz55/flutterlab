@@ -13,9 +13,13 @@ class _TransformSizeState extends State<TransformSize>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation;
+  GlobalKey _globalKey = GlobalKey();
 
   double _containerHeight = double.infinity;
   double _containerWidth = 150.0;
+
+  double _topPos = 0.0;
+  double _leftPos = 0.0;
 
   @override
   void initState() {
@@ -27,6 +31,14 @@ class _TransformSizeState extends State<TransformSize>
     _controller.addListener(() {
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      RenderBox _renderBox = _globalKey.currentContext.findRenderObject();
+      setState(() {
+        _topPos = _renderBox.localToGlobal(Offset.zero).dy;
+        _leftPos = _renderBox.localToGlobal(Offset.zero).dx;
+      });
+    });
   }
 
   @override
@@ -37,11 +49,12 @@ class _TransformSizeState extends State<TransformSize>
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height - 80;
-    double width = MediaQuery.of(context).size.width - 304;
+    double height = MediaQuery.of(context).size.height - _topPos;
+    double width = MediaQuery.of(context).size.width - _leftPos;
     TextStyle whiteTextStyle = TextStyle(color: Colors.white, fontSize: 16.0);
 
     return Container(
+      key: _globalKey,
       height: height,
       width: width,
       child: Stack(
