@@ -37,7 +37,7 @@ class MainDrawer extends StatelessWidget {
                 title: drawerList[index].title,
                 description: drawerList[index].description,
                 status: drawerList[index].status,
-                odd: drawerList[index].odd,
+                odd: index % 2 == 0 ? true : false,
               ),
             )
           ],

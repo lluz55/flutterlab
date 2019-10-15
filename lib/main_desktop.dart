@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/pages/provider_updates/provider_up_test.dart';
 import 'package:flutter_lab/router.dart';
 import 'package:flutter_lab/theme/theme_bloc.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,9 @@ void main() {
     MultiProvider(providers: [
       ChangeNotifierProvider(
         builder: (_) => ThemeBloc(),
+      ),
+      ChangeNotifierProvider(
+        builder: (_) => ProviderUpTest(),
       )
     ], child: MyApp()),
   );

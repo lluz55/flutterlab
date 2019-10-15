@@ -5,6 +5,7 @@ import 'package:flutter_lab/pages/customRouter/customRouter.dart';
 import 'package:flutter_lab/pages/custom_navigator/custom_navigator.dart';
 import 'package:flutter_lab/pages/home/homePage.dart';
 import 'package:flutter_lab/pages/overlayTest/overlayTest.dart';
+import 'package:flutter_lab/pages/provider_updates/provider_updates_page.dart';
 import 'package:flutter_lab/pages/semiTransparent/semiTransparentPage.dart';
 import 'package:flutter_lab/pages/streams/streamsPage.dart';
 import 'package:flutter_lab/pages/transfomations/transformationsPage.dart';
@@ -30,14 +31,14 @@ class RouterBuilder extends ChangeNotifier {
     '/transformations': (_) => MainLayout(
           TransformationsPage(),
         ),
-    '/customRouter': (_) => MainLayout(
-          CustomRouter(),
-        ),
     '/widgetUpdates': (_) => MainLayout(
           WidgetUpdatesPage(),
         ),
     '/customNavigator': (_) => MainLayout(
           CustomNavigatorPage(),
+        ),
+    '/providerUpdates': (_) => MainLayout(
+          ProviderUpdatePage(),
         )
   };
 }

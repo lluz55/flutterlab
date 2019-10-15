@@ -112,10 +112,6 @@ List<RouteDrawerItemModel> drawerList = [
       odd: true),
   RouteDrawerItemModel('Transformations',
       routeName: '/transformations', description: 'Testes com transforms'),
-  RouteDrawerItemModel('Custom Router',
-      routeName: '/customRouter',
-      description: 'Router View personalizado',
-      odd: true),
   RouteDrawerItemModel('Widget Updates',
       routeName: '/widgetUpdates',
       description: 'Testes com atualização de widgets'),
@@ -123,6 +119,10 @@ List<RouteDrawerItemModel> drawerList = [
       routeName: '/customNavigator',
       description: 'Navegador customizado',
       odd: true),
+  RouteDrawerItemModel('Provider Update',
+      routeName: '/providerUpdates',
+      description: 'Testes de atualização de widget usando provider',
+      odd: false),
 ];
 
 class RouteDrawerItemModel {
